@@ -1,0 +1,19 @@
+eureka:
+  server:
+    wait-time-in-ms-when-sync-empty: 0
+    response-cache-update-interval-ms: 5000
+  client:
+    fetch-registry: false
+    register-with-eureka: false
+    service-url:
+      defaultZone: http://admin:admin@ms-discovery-server:8761/eureka
+server:
+  port: 8761
+spring:
+  application:
+    name: ms-discovery-server
+
+  security:
+    user:
+      name: ${CONFIG_SERVER_USERNAME:admin}
+      password: ${CONFIG_SERVER_PASSWORD:admin}

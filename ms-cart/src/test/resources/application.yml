@@ -1,0 +1,32 @@
+#logging:
+#  level:
+#    '[org.springframework]': off
+#    '[root]': off
+#    '[org.hibernate.sql]': debug
+spring:
+
+  main:
+    banner-mode: off
+    
+  cloud:
+  
+    config:
+      enabled: false
+      
+    vault:
+      enabled: false
+      
+    bus:
+      enabled: false
+      
+  boot:
+    admin:
+      client:
+        enabled: false
+      
+  zipkin:
+    enabled: false
+    
+eureka:
+  client:
+    enabled: false

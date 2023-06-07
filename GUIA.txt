@@ -1,0 +1,11 @@
+http://localhost:(numero delpuerto usado por el microservicio)/swagger-ui/index.html
+
+BRIR CMD :
+Paso 1 : Comando wsl -d docker-desktop
+Paso 2 : sysctl -w vm.max_map_count=262144
+
+ELIMINAR LOS CONTENEDORES DE KEYCLOAK Y ZIPKIN, ABROR GIT BASH EN en D:\SPRINGBOOT\CodearFeb23 :
+Paso 1 : docker-compose -f zipkin.yml up -d
+Paso 2 : docker-compose -f zipkin-slim.yml up -d
+Paso 3 : docker-compose -f keycloak.yml up -d
+

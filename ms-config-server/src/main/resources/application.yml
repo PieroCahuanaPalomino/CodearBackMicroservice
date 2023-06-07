@@ -1,0 +1,50 @@
+server:
+  port: 8888
+spring:
+  
+  application:
+    name: ms-config-server
+
+#  profiles:
+#    active:
+#      - vault
+#      - git
+
+  cloud:
+    config:
+      fail-fast: true
+      retry:
+        initial-interval: 3000
+        multiplier: 1.3
+        max-interval: 10000
+        max-attempts: 20
+      server:
+#        vault:
+#          order: 1
+#          host: ${VAULT_HOST:vault} 
+#          scheme: ${VAULT_SCHEME:http}
+#          port: ${VAULT_PORT:8200}
+#          kv-version: ${VAULT_VERSION:2}
+#          token: ${VAULT_TOKEN:00000000-0000-0000-0000-000000000000}
+        git:
+#          order: 2
+          default-label: main
+          uri: git@github.com:PieroCahuanaPalomino/CodearProyect.git
+#          username:
+#          password: 
+          ignore-local-ssh-settings: true
+          passphrase: 12345
+          private-key: |
+              -----BEGIN EC PRIVATE KEY-----
+              MIHcAgEBBEIBI5nvMo9mhhcpgVnkpSKXyAIu06Jcfy389DhQTi/fPfddINkErzzj
+              u8N6VhqNPp7yUfkyF7HHvmYQ5pNMt2Gh9emgBwYFK4EEACOhgYkDgYYABAGpZRFj
+              auiKa3rwRQyz1EJLTKHax5ALeTNLUg0dtLiEIg9GHvBq4lkiJVMYLobw2cdMtAbv
+              J7R4Knl6SB5Fj6ICEAFRA+tfGN1HySdVsdn9WYHQd3zjuGQvZoEBVVzrboyuu+w+
+              6HNJ6u/U2bsFDcbOefxuj3AcnwCSnwxLtJA8VBsaEQ==
+              -----END EC PRIVATE KEY-----
+
+  
+  security:
+    user:
+      name: ${CONFIG_SERVER_USERNAME:admin}
+      password: ${CONFIG_SERVER_PASSWORD:admin}

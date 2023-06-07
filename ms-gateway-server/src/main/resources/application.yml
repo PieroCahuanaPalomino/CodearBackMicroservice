@@ -1,0 +1,79 @@
+server:
+  port: 8080
+
+spring:
+  
+  application:
+    name: ms-gateway-server
+  
+  cloud:
+  
+    gateway:
+#      default-filters:
+#        - TokenRelay
+      routes:
+      - id: ms-product
+        uri: lb://ms-product
+        predicates:
+          - Path=/api/product/**
+        filters:
+          -   StripPrefix=2
+#          - name: EjemploCookie
+#            args:
+#              mensaje: Hola mi mensaje personalizado
+#              cookieValor: admin
+#              cookieNombre: usuario
+#          - EjemploCookie=Hola mi mensaje personalizado, usuario, admin
+      - id: ms-cart
+        uri: lb://ms-cart
+        predicates:
+          - Path=/api/cart/**
+        filters:
+          - StripPrefix=2
+#          - AddRequestHeader=token-request, 123456
+#          - AddResponseHeader=token-response, 12345678
+#          - SetResponseHeader=Content-Type, text/plain
+#          - AddRequestParameter=nombre, John
+  boot:
+    admin:
+      client:
+        enabled: true
+        url: http://ms-sba-server:8086
+        username: ${SBA_SERVER_USERNAME:admin}
+        password: ${SBA_SERVER_PASSWORD:admin}
+
+  zipkin:
+    enabled: true
+    #si trabajas con kafka no se usa URL
+    #base-url: http://zipkin:9411
+    sender:
+      type: kafka
+    kafka:
+      topic: zipkin
+  
+  kafka:
+    bootstrap-servers:
+    - zipkin-kafka:19092
+  
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://gateway.docker.internal:8181/auth/realms/Msi
+    
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+
+eureka:
+  client:
+    enabled: true
+    service-url:
+      defaultZone: http://admin:admin@ms-discovery-server:8761/eureka
+    initial-instance-info-replication-interval-seconds: 5
+    registry-fetch-interval-seconds: 5
