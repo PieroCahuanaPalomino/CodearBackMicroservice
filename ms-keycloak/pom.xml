@@ -19,6 +19,8 @@
 		<spring-boot-admin.version>2.7.4</spring-boot-admin.version>
 	</properties>
 	<dependencies>
+	
+	
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
