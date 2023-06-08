@@ -17,7 +17,7 @@ spring:
         predicates:
           - Path=/api/product/**
         filters:
-          -   StripPrefix=2
+          - StripPrefix=2
 #          - name: EjemploCookie
 #            args:
 #              mensaje: Hola mi mensaje personalizado
