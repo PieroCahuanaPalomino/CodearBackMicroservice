@@ -1,0 +1,33 @@
+server:
+  port: ${PORT:0}
+
+spring:
+  profiles:
+    active: 
+    - default
+    
+  application:
+    name: ms-keycloak
+      
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+
+eureka:
+  client:
+    enabled: true
+    service-url:
+      defaultZone: http://admin:admin@ms-discovery-server:8761/eureka
+    initial-instance-info-replication-interval-seconds: 5
+    registry-fetch-interval-seconds: 5
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 5
+    hostname: localhost

@@ -1,5 +1,5 @@
 http://localhost:(numero delpuerto usado por el microservicio)/swagger-ui/index.html
-
+ms-discovery-server:8761
 BRIR CMD :
 Paso 1 : Comando wsl -d docker-desktop
 Paso 2 : sysctl -w vm.max_map_count=262144
