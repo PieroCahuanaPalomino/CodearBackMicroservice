@@ -11,10 +11,16 @@ spring:
       
   config:
     import:
+    - configserver:${CONFIG_SERVER:http://ms-config-server:8888}
     - vault://
 
   cloud:
       
+    config:
+      enabled:  true
+      username: ${CONFIG_SERVER_USERNAME:admin}
+      password: ${CONFIG_SERVER_PASSWORD:admin}      
+
     vault:
       enabled: true
       uri: ${VAULT:http://vault:8200}
