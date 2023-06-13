@@ -31,7 +31,7 @@ public class SpringSecurityConfiguration {
 		http.authorizeExchange()
 		.pathMatchers("/actuator/**", "/api/security/**").permitAll()
 		.pathMatchers(HttpMethod.GET, "/api/cart/**", "/api/product/**").hasAnyRole("USER", "ADMIN")
-		.pathMatchers("/api/cart/**", "/api/product/**").hasAnyRole("ADMIN")
+		.pathMatchers("/api/cart/**", "/api/product/**", "/api/keycloak/**").hasAnyRole("ADMIN")
 		.anyExchange().authenticated()
 		.and()
 		//.oauth2Login(Customizer.withDefaults()) //for SSO login with oauth server

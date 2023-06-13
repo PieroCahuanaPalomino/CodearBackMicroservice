@@ -21,13 +21,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.codearti.dto.keycloak.ResponseMessage;
 import com.codearti.model.dto.CartRequestDeleteDto;
 import com.codearti.model.dto.CartRequestDto;
 import com.codearti.model.dto.CartResponseDto;
-import com.codearti.model.keycloak.User;
 import com.codearti.service.CartService;
-import com.codearti.service.keycloak.KeycloakService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -80,17 +77,4 @@ public class CartController {
 		return new ResponseEntity<Map<String, String>>(json, HttpStatus.OK);
 	}
 
-	
-	/*
-	
-	@Autowired
-	private KeycloakService keycloakService;
-	
-	 @PostMapping("/create")
-	    public ResponseEntity<ResponseMessage> create(@RequestBody User user){
-	        Object[] obj = keycloakService.createUser(user);
-	        int status = (int) obj[0];
-	        ResponseMessage message = (ResponseMessage) obj[1];
-	        return ResponseEntity.status(status).body(message);
-	    }*/
 }

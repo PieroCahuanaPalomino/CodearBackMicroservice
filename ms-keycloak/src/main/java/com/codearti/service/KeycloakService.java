@@ -1,8 +1,6 @@
-package com.codearti.service.keycloak;
+package com.codearti.service;
 
-import com.codearti.dto.keycloak.ResponseMessage;
-import com.codearti.model.keycloak.User;
-import com.codearti.service.CartService;
+//import com.codearti.service.CartService;
 
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
 import org.keycloak.admin.client.Keycloak;
@@ -15,6 +13,9 @@ import org.keycloak.representations.idm.UserRepresentation;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import com.codearti.model.dto.ResponseMessage;
+import com.codearti.model.dto.UserDto;
+
 import javax.ws.rs.core.Response;
 import java.util.Arrays;
 
@@ -22,11 +23,9 @@ import java.util.Arrays;
 import org.slf4j.Logger;
 import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @Service
 public class KeycloakService {
-
-	private static final Logger LOGGER=org.slf4j.LoggerFactory.getLogger(CartService.class);
+	//private static final Logger LOGGER=org.slf4j.LoggerFactory.getLogger(CartService.class);
 
 	
 	@Value("${keycloak.auth-server-url}")
@@ -35,7 +34,7 @@ public class KeycloakService {
 	@Value("${keycloak.realm}")
 	private String realms;
 
-	  public Object[] createUser(User user){
+	  public Object[] createUser(UserDto user){
 	        ResponseMessage message = new ResponseMessage();
 	        int statusId = 0;
 	         try {
