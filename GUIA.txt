@@ -9,3 +9,10 @@ Paso 1 : docker-compose -f zipkin.yml up -d
 Paso 2 : docker-compose -f zipkin-slim.yml up -d
 Paso 3 : docker-compose -f keycloak.yml up -d
 
+
+CONFIG SERVER : Centralizar las configuraciones de block de notas en GIT o VAULT
+DISCOVERY SERVER : Microservicio destinado al EUREKA
+GATEWAY SERVER : Microservicio destinado a la centralizacion de microservicios
+SBA SERVER : Microservicio destinado al SBA 
+
+
