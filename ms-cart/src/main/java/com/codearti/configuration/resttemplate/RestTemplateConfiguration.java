@@ -1,4 +1,4 @@
-package com.codearti.comfiguration.resttemplate;
+package com.codearti.configuration.resttemplate;
 
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
