@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.codearti.configuration.error.ResourceNotFoundException;
@@ -18,6 +19,7 @@ import com.codearti.model.entity.ProductEntity;
 import com.codearti.model.entity.ProductStatus;
 import com.codearti.model.mapper.ProductMapper;
 import com.codearti.repository.ProductRepository;
+import com.codearti.service.ProductEventService;
 import com.codearti.service.ProductService;
 
 import org.springframework.transaction.annotation.Transactional;
@@ -33,6 +35,12 @@ public class ProductServiceImpl implements ProductService{
 		private final ProductRepository repository;
 		
 		private final ProductMapper mapper;
+		
+		@Autowired
+		private  ProductEventService productEventService;
+	
+		
+		
 		
 		@Transactional(readOnly = true) //SOLO LECTURA
 		public List<ProductResponseDto> findAll(ProductStatus status,int port){
@@ -63,7 +71,15 @@ public class ProductServiceImpl implements ProductService{
 			ProductEntity productEntity = mapper.requestToEntity(productRequest);
 			repository.save(productEntity);
 			log.info("saved");
-			return mapper.entityToResponse(productEntity, port);
+			
+			
+			
+			ProductResponseDto productResponseDto=mapper.entityToResponse(productEntity, port);
+			//
+			this.productEventService.publish(productResponseDto);
+			//
+			
+			return productResponseDto;
 		}
 		
 		@Transactional

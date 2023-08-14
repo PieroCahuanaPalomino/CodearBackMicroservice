@@ -19,7 +19,7 @@ public class ProductEventService {
 	@Autowired
 	private KafkaTemplate<String, Event<?>> producer;
 	
-	@Value("${topic.customer.name:customers}")
+	@Value("${topic.customer.name:product}")
 	private String topicCustomer;
 	
 	public void publish(ProductResponseDto productDto) {
